@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Clínica Veterinária</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="form-content" style="margin: 5px">
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <ion-card [routerLink]="['/meus-animais']">
+              <ion-card-content>
+                <img alt="Cão e gato juntos correndo na grama" src="../../assets/meus-animais.png" />
+                <p >Meus Animais</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-card>
+              <ion-card-content>
+                <img alt="foto de um Hamster" src="../../assets/hamster.png" />
+                <p class="ion-text-center">Consultas Agendadas</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            <ion-card>
+              <ion-card-content>
+                <img alt="foto de uma Tartaruga pequena" src="../../assets/Tartaruga.png" />
+                <p class="ion-text-center">Histórico de Consultas</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+
+        <ion-col size="12">
+          <div>
+            <ion-card>
+              <ion-card-content> 
+                <p style="display: flex;">
+                  <ion-icon slot="start" name="settings" style="margin-right: 20px;"></ion-icon>
+                  Configuração personalizada
+                </p>
+              </ion-card-content>
+            </ion-card>
+            
+          </div>
+        </ion-col>
+      </ion-row>
+      
+  </ion-grid>
+</ion-content>

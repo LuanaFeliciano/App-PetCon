@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button fill="solid">
+        Cadastrar
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">Clínica Veterinária</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="form-content" style="margin: 5px">
+      <ion-row>
+        <ion-col size="12">
+          <div class="ion-text-center">
+            <h1>Meus Animais</h1>
+            <p class="text">Bem vindo! aqui você poderá cadastrar novos animais, editar e solicitar agendamentos</p>
+          </div>
+
+          <ion-card [routerLink]="['/meus-animais']">
+            <ion-card-content class="custom-card-content">
+              <ion-col size="6">
+                <div class="image-container">
+                <img alt="Cão e gato juntos correndo na grama" src="../../assets/hamsterPhoto.png" />
+              </div>
+              </ion-col>
+              <ion-col size="6">
+                <div class="info-container">
+                <p>Animal: Hamster</p>
+                <p>Nome: Tobias</p>
+                <p>Idade: 1 ano</p>
+                <div class="buttons">
+                  <ion-button expand="block">Solicitar</ion-button>
+                  <ion-button expand="block">Editar</ion-button>
+                </div>
+              </div>
+              </ion-col>
+              
+            </ion-card-content>
+          </ion-card>
+          
+          
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

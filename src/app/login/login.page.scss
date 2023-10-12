@@ -1,0 +1,78 @@
+h1 {
+    color:var(--ion-color-primary);
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  p {
+    color: #545454;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+  }
+  
+  label {
+    color: var(--ion-color-primary);
+  
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  ion-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #757575;
+  }
+  
+  .login-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    ion-button {
+      width: 75%;
+      margin-top: 10px;
+      font-family: "Poppins", sans-serif;
+      font-size: 20px;
+      --border-radius: 10px;
+    }
+  }
+  
+  ion-item {
+    margin-top: 3px;
+    border-radius: 10px;
+    border: 2px solid var(--primary, #0477C6);
+    background: #F1F4FF;
+  }
+  
+  .esqueceu_senha {
+    display: flex;
+  
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .line-text {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  
+    .lines {
+      height: 1px;
+      background: #acadac;
+      display: block;
+    }
+
+    .text {
+        color: #acadac;
+        position: absolute;
+        top: -7px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fcfbfb;
+        padding: 0 16px;
+      }
+}

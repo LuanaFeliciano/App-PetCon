@@ -1,0 +1,50 @@
+<ion-content [fullscreen]="true" class="">
+  <ion-grid class="form-content" style="margin: 5px">
+    <form>
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <h1>Faça seu Login</h1>
+            <p style="font-weight: 600;">Primeiro Acesso?<br>Atualize sua Senha</p>
+            <label>Email</label>
+            <ion-item lines="none">
+              <ion-input clearInput type="text" placeholder="Email"  maxlength="256"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <div style="margin-top: 15px">
+            <label>Senha</label>
+            <ion-item lines="none">
+              <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Senha"
+                clearOnEdit="false" maxlength="15"></ion-input>
+              <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end"
+                (click)="mudarVisualizacao()"></ion-icon>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <div class="login-buttons ion-text-center ion-margin-top">
+            <ion-button expand="block" [routerLink]="['/inicio']" size="small">Acessar</ion-button>
+            <ion-button expand="block" [routerLink]="['/primeiro-acesso']" size="small">Primeiro Acesso</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+
+  <div class="line-text">
+    <span class="lines"></span>
+    <span class="text">Ou</span>
+  </div>
+
+  <div class="esqueceu_senha ion-justify-content-center ion-margin-top ion-text-center">
+    <h5><a>ESQUECEU SUA SENHA?</a></h5>
+  </div>
+</ion-content>
