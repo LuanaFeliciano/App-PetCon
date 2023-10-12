@@ -1,4 +1,4 @@
-<ion-card [routerLink]="['/meus-animais']">
+<ion-card>
   <ion-card-content class="custom-card-content">
     <ion-col size="6">
       <div class="image-container">
@@ -10,9 +10,9 @@
       <p>Animal: {{tipo}}</p>
       <p>Nome: {{nome}}</p>
       <p>Idade: {{idade}}</p>
-      <div class="buttons">
-        <ion-button expand="block">Solicitar</ion-button>
-        <ion-button expand="block">Editar</ion-button>
+      <div class="buttons-container">
+        <ion-button expand="block"  [routerLink]="['/solicitar', id]">Solicitar</ion-button>
+        <ion-button expand="block" [routerLink]="['/editar-animal', id]">Editar</ion-button>
       </div>
     </div>
     </ion-col>

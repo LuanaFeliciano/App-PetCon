@@ -31,6 +31,14 @@ const routes: Routes = [
     path: 'cadastro-animal',
     loadChildren: () => import('./pages/cadastro-animal/cadastro-animal.module').then( m => m.CadastroAnimalPageModule)
   },
+  {
+    path: 'editar-animal/:id',
+    loadChildren: () => import('./pages/editar-animal/editar-animal.module').then( m => m.EditarAnimalPageModule)
+  },
+  {
+    path: 'solicitar/:id',
+    loadChildren: () => import('./pages/solicitar/solicitar.module').then( m => m.SolicitarPageModule)
+  },
 ];
 
 @NgModule({

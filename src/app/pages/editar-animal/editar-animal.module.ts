@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CadastroAnimalPageRoutingModule } from './cadastro-animal-routing.module';
+import { EditarAnimalPageRoutingModule } from './editar-animal-routing.module';
 
-import { CadastroAnimalPage } from './cadastro-animal.page';
+import { EditarAnimalPage } from './editar-animal.page';
 import { ValidatorModule } from 'src/app/shared_modules/validator/validator.module';
 
 @NgModule({
@@ -14,10 +14,10 @@ import { ValidatorModule } from 'src/app/shared_modules/validator/validator.modu
     CommonModule,
     FormsModule,
     IonicModule,
-    CadastroAnimalPageRoutingModule,
+    EditarAnimalPageRoutingModule,
     ReactiveFormsModule,
     ValidatorModule
   ],
-  declarations: [CadastroAnimalPage]
+  declarations: [EditarAnimalPage]
 })
-export class CadastroAnimalPageModule {}
+export class EditarAnimalPageModule {}

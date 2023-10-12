@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid class="ion-padding">
-    <form [formGroup]="cadastroForm" novalidate>
+    <form [formGroup]="editarForm" novalidate>
       <ion-row>
         <ion-col class="image-container">
           <div (click)="abrirSelecaoDeImagem()" class="image-placeholder" *ngIf="!imageUrl">
@@ -30,7 +30,7 @@
                   placeholder="Nome do seu animal"></ion-input>
               </ion-item>
               <div class="error-container">
-                <app-validator-form [control]="$any(cadastroForm.get('nome'))"
+                <app-validator-form [control]="$any(editarForm.get('nome'))"
                   [messages]="validationMessages.nome"></app-validator-form>
               </div>
             </div>
@@ -41,7 +41,7 @@
                   placeholder="Raça do seu animal"></ion-input>
               </ion-item>
               <div class="error-container">
-                <app-validator-form [control]="$any(cadastroForm.get('raca'))"
+                <app-validator-form [control]="$any(editarForm.get('raca'))"
                   [messages]="validationMessages.raca"></app-validator-form>
               </div>
             </div>
@@ -52,19 +52,19 @@
                   placeholder="Tipo de animal (cão, coelho, gato)"></ion-input>
               </ion-item>
               <div class="error-container">
-                <app-validator-form [control]="$any(cadastroForm.get('tipo'))"
+                <app-validator-form [control]="$any(editarForm.get('tipo'))"
                   [messages]="validationMessages.tipo"></app-validator-form>
               </div>
             </div>
             <div>
               <ion-item class="ion-margin-top">
                 <ion-select formControlName="sexo" label="Sexo" label-placement="floating">
-                  <ion-select-option value="macho">Macho</ion-select-option>
-                  <ion-select-option value="femea">Fêmea</ion-select-option>
+                  <ion-select-option value="Macho">Macho</ion-select-option>
+                  <ion-select-option value="Fêmea">Fêmea</ion-select-option>
                 </ion-select>
               </ion-item>
               <div class="error-container">
-                <app-validator-form [control]="$any(cadastroForm.get('sexo'))"
+                <app-validator-form [control]="$any(editarForm.get('sexo'))"
                   [messages]="validationMessages.sexo"></app-validator-form>
               </div>
             </div>
@@ -74,7 +74,7 @@
                   placeholder="Idade do animal"></ion-input>
               </ion-item>
               <div class="error-container">
-                <app-validator-form [control]="$any(cadastroForm.get('idade'))"
+                <app-validator-form [control]="$any(editarForm.get('idade'))"
                   [messages]="validationMessages.idade"></app-validator-form>
               </div>
             </div>
@@ -85,7 +85,7 @@
     <ion-row>
       <ion-col size="12">
         <div class="button ion-text-center ion-margin-top">
-          <ion-button expand="block" size="default" (click)="cadastrar()" >Cadastrar</ion-button>
+          <ion-button expand="block" size="default" (click)="cadastrar()">Editar</ion-button>
         </div>
       </ion-col>
     </ion-row>

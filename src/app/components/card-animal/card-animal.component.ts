@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-animal',
@@ -10,8 +11,9 @@ export class CardAnimalComponent  implements OnInit {
   @Input() tipo: string = '';
   @Input() nome: string = '';
   @Input() link: string = '';
-  constructor() { }
-
+  @Input() id: number = 0;
+  constructor(private router: Router) { }
+  
   ngOnInit() {}
 
 }
