@@ -1,0 +1,21 @@
+<ion-card [routerLink]="['/meus-animais']">
+  <ion-card-content class="custom-card-content">
+    <ion-col size="6">
+      <div class="image-container">
+      <img alt="Cão e gato juntos correndo na grama" src={{link}} />
+    </div>
+    </ion-col>
+    <ion-col size="6">
+      <div class="info-container">
+      <p>Animal: {{tipo}}</p>
+      <p>Nome: {{nome}}</p>
+      <p>Idade: {{idade}}</p>
+      <div class="buttons">
+        <ion-button expand="block">Solicitar</ion-button>
+        <ion-button expand="block">Editar</ion-button>
+      </div>
+    </div>
+    </ion-col>
+    
+  </ion-card-content>
+</ion-card>

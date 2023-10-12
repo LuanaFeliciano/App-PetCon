@@ -1,0 +1,15 @@
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 18px;
+    gap: 10px;
+}
+
+.custom-card-content {
+    display: flex;
+}
+
+ion-card {
+    border-right: 6px solid var(--ion-color-primary);
+}
+

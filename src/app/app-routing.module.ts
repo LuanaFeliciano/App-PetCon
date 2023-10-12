@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
@@ -13,19 +13,23 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
     path: 'primeiro-acesso',
-    loadChildren: () => import('./primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
+    loadChildren: () => import('./pages/primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
   },
   {
     path: 'meus-animais',
-    loadChildren: () => import('./meus-animais/meus-animais.module').then( m => m.MeusAnimaisPageModule)
+    loadChildren: () => import('./pages/meus-animais/meus-animais.module').then( m => m.MeusAnimaisPageModule)
+  },
+  {
+    path: 'cadastro-animal',
+    loadChildren: () => import('./pages/cadastro-animal/cadastro-animal.module').then( m => m.CadastroAnimalPageModule)
   },
 ];
 
