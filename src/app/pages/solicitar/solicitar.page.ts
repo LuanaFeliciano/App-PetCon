@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class SolicitarPage implements OnInit {
   imageUrl: any;
   solicitarForm: FormGroup;
+  nome : string = '';
   animals = [
     {id: 1, nome: 'Tobias', idade: 1, tipo: 'Hamster', link: '../../assets/hamsterPhoto.png', raca: 'Sírio', sexo: 'Macho' },
     {id: 2, nome: 'Frederic', idade: 10, tipo: 'Jabuti', link: '../../assets/tartarugaPhoto.png', raca: 'Nenhuma', sexo: 'Macho'},
@@ -64,9 +65,7 @@ export class SolicitarPage implements OnInit {
         const animal = this.animals.find(a => a.id === +animalId);
 
         if (animal) {
-         // this.solicitarForm.setValue({
-          //  nome: animal.nome,
-          //});
+          this.nome = animal.nome;
           this.imageUrl = animal.link;
         }
       }

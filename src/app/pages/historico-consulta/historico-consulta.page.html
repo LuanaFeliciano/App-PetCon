@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">Clínica Veterinária</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="form-content" style="margin: 5px">
+      <ion-row>
+        <ion-col size="12">
+          <div class="ion-text-center">
+            <h1>Histórico de Consultas</h1>
+          </div>
+          <div>
+            <ion-list>
+              <ion-item>
+                <ion-select placeholder="Filtrar por animal" (ionChange)="filterConsultas($event)">
+                  <ion-select-option *ngFor="let animal of animals" [value]="animal.id">{{animal.nome}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </div>
+          <ng-container *ngFor="let consulta of filteredConsultas">
+            <app-historico-card [nome]="consulta.nome" [idade]="consulta.idade" [data]="consulta.data" [veterinario]="consulta.veterinario" [animal]="consulta.tipo" [servico]="consulta.servico"></app-historico-card>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

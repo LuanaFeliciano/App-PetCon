@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'solicitar/:id',
     loadChildren: () => import('./pages/solicitar/solicitar.module').then( m => m.SolicitarPageModule)
   },
+  {
+    path: 'historico-consulta',
+    loadChildren: () => import('./pages/historico-consulta/historico-consulta.module').then( m => m.HistoricoConsultaPageModule)
+  },
 ];
 
 @NgModule({
