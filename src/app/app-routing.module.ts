@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'historico-consulta',
     loadChildren: () => import('./pages/historico-consulta/historico-consulta.module').then( m => m.HistoricoConsultaPageModule)
   },
+  {
+    path: 'consultas-agendadas',
+    loadChildren: () => import('./pages/consultas-agendadas/consultas-agendadas.module').then( m => m.ConsultasAgendadasPageModule)
+  },
 ];
 
 @NgModule({
