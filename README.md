@@ -3,7 +3,9 @@
 ## 📋 Resumo
  A Aplicativo PetCon visa aprimorar a experiência do cliente, priorizando a saúde e o bem-estar dos animais de estimação, melhorando a comunicação com a clínica veterinária 
  e o acompanhamento do cliente com o seu animal de estimação.
- 
+## Wiki
+https://github.com/LuanaFeliciano/App-PetCon/wiki/Telas-APP
+
 ## 👩🏽‍💻 Tecnologia
 * [IONIC com Angular](https://ionicframework.com/)
 * [Typescript](https://www.typescriptlang.org/)
