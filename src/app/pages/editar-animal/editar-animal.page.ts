@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource} from '@capacitor/camera';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { UserServiceService } from 'src/app/Services/UserService/user-service.service';
+import { EditarAnimalService } from 'src/app/Services/editarAnimal/editar-animal.service';
 @Component({
   selector: 'app-editar-animal',
   templateUrl: './editar-animal.page.html',
   styleUrls: ['./editar-animal.page.scss'],
 })
 export class EditarAnimalPage implements OnInit {
+  idUser: number = this.UserGet.getIdUser();
+  animalId: any;
   imageUrl: any;
   editarForm: FormGroup;
   animals = [
@@ -18,7 +22,10 @@ export class EditarAnimalPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastController: ToastController,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private editarService: EditarAnimalService,
+    private loadingCtrl: LoadingController,
+    private UserGet: UserServiceService) {
     this.editarForm = this.formBuilder.group({
       nome: [null, Validators.required],
       tipo: [null, Validators.required],
@@ -69,32 +76,67 @@ export class EditarAnimalPage implements OnInit {
     }
   }
 
-  async cadastrar() {
+  async editar() {
     if (!this.editarForm.valid) {
       this.presentMensagemToast('Verifique os campos corretamente', 'danger');
       return;
     }
-    this.presentMensagemToast('Editado com sucesso', 'success');
+    const loading = await this.loadingCtrl.create({
+      message: 'Editando ....',
+    });
+
+    try {
+      await loading.present();
+      
+      const data = {
+        animalId: Number(this.animalId),
+        nome: this.editarForm.get('nome')?.value,
+        tipo: this.editarForm.get('tipo')?.value,
+        raca: this.editarForm.get('raca')?.value,
+        idade: this.editarForm.get('idade')?.value,
+        sexo: this.editarForm.get('sexo')?.value,
+        clienteId: Number(this.idUser),
+        ativo: true,
+      };
+
+      const response: any = await this.editarService.editarAnimal(data);
+      console.log(response)
+      if (response) {
+        this.presentMensagemToast(response.data, 'success');
+      }
+    } catch (error: any) {
+      this.presentMensagemToast("erro ao editar", 'danger');
+    } finally {
+      loading.dismiss();
+    }
+  }
+
+  async getAnimal(idAnimal: any) {
+    try {
+      
+      const response: any = await this.editarService.getAnimal(idAnimal);
+      console.log(response)
+      if (response) {
+        this.editarForm.setValue({
+                nome: response.nome,
+                tipo: response.tipo,
+                raca: response.raca,
+                idade: response.idade,
+                sexo: response.sexo
+              });
+      }
+    } catch (error: any) {
+      this.presentMensagemToast("erro ao buscar animal", 'danger');
+    }
   }
 
   ngOnInit() {
+    this.idUser = this.UserGet.getIdUser();
     this.route.paramMap.subscribe(params => {
       const animalId = params.get('id');
       if (animalId) {
-        // Encontrar o animal com base no animalId
-        const animal = this.animals.find(a => a.id === +animalId);
-
-        if (animal) {
-          // Preencher os campos do formulário com os dados do animal
-          this.editarForm.setValue({
-            nome: animal.nome,
-            tipo: animal.tipo,
-            raca: animal.raca,
-            idade: animal.idade,
-            sexo: animal.sexo
-          });
-          this.imageUrl = animal.link;
-        }
+        this.getAnimal(animalId);
+        this.animalId = animalId
       }
     });
   }

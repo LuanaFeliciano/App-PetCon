@@ -21,6 +21,7 @@ export class EditarAnimalService {
     };
 
     return new Promise((resolve, reject) => {
+      console.log(options.data)
       CapacitorHttp.put(options)
         .then((response: HttpResponse) => {
           console.log('Resposta editar animal:', response);
