@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiRoutes } from '../api/api.service';
 import { CapacitorHttp, HttpOptions, HttpResponse } from '@capacitor/core';
 import { Observable } from 'rxjs';
+import { UserServiceService } from '../UserService/user-service.service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(private UserService: UserServiceService) { }
 
   
   public login(param: any) {
@@ -28,6 +29,8 @@ export class LoginService {
 
           if (response.status === 200) {
             resolve(response.data);
+            console.log(response.data.clienteId);
+            this.UserService.setIdUser(response.data.clienteId)
           } else {
             reject(response.data);
           }

@@ -1,21 +1,18 @@
-<ion-card>
-  <ion-card-content class="custom-card-content">
-    <ion-col size="6">
-      <div class="image-container">
-      <img alt="Cão e gato juntos correndo na grama" src={{link}} />
+<ion-card class="os-card" [ngStyle]="{'border-right': sexo === 'Macho' ? '6px solid var(--ion-color-primary)' : '6px solid #FF69B4'}">
+  <ion-card-header>
+    <ion-card-title [ngStyle]="{'color': sexo === 'Macho' ? 'var(--ion-color-primary)' : '#FF69B4'}">
+      {{ nome }}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="card-content">
+    <!-- Conteúdo comum -->
+    <p><span class="dark">Animal:</span> {{ tipo }}</p>
+    <p><span class="dark">Raça:</span> {{ raca }}</p>
+    <p><span class="dark">Idade:</span> {{ idade }} ano(s)</p>
+    <p><span class="dark">Sexo:</span> {{ sexo }}</p>
+    <div class="buttons-container">
+      <ion-button expand="block" color="light"  [routerLink]="['/solicitar', id]">Solicitar</ion-button>
+      <ion-button expand="block" color="light" [routerLink]="['/editar-animal', id]">Editar</ion-button>
     </div>
-    </ion-col>
-    <ion-col size="6">
-      <div class="info-container">
-      <p>Animal: {{tipo}}</p>
-      <p>Nome: {{nome}}</p>
-      <p>Idade: {{idade}}</p>
-      <div class="buttons-container">
-        <ion-button expand="block"  [routerLink]="['/solicitar', id]">Solicitar</ion-button>
-        <ion-button expand="block" [routerLink]="['/editar-animal', id]">Editar</ion-button>
-      </div>
-    </div>
-    </ion-col>
-    
   </ion-card-content>
 </ion-card>

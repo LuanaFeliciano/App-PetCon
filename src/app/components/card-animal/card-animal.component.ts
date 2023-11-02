@@ -11,6 +11,8 @@ export class CardAnimalComponent  implements OnInit {
   @Input() tipo: string = '';
   @Input() nome: string = '';
   @Input() link: string = '';
+  @Input() raca: string = '';
+  @Input() sexo: string = '';
   @Input() id: number = 0;
   constructor(private router: Router) { }
   
