@@ -35,7 +35,7 @@ export class MeusAnimaisPage implements OnInit {
     try {
       await loading.present();
 
-      const idUser = 3;
+      const idUser = this.idUser;
 
       const response: any = await this.meusAnimaisService.meusAnimais(idUser);
       
@@ -53,6 +53,7 @@ export class MeusAnimaisPage implements OnInit {
 
   ngOnInit() {
     this.listagemAnimais();
+    this.idUser = this.UserGet.getIdUser();
   }
 
 }

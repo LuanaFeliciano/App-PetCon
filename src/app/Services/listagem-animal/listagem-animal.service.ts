@@ -26,7 +26,7 @@ export class ListagemAnimalService {
           if (response.status === 200) {
             resolve(response.data.$values);
           } else {
-            reject(response.data.$values);
+            reject(response.data);
           }
         })
         .catch((error) => {
