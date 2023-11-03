@@ -6,5 +6,6 @@ export const ApiRoutes = {
   cadastroAnimal: `${BASE_URL}/api/Cliente/IncluirAnimal`, //post
   editarAnimal: `${BASE_URL}/api/Animal`, //put
   getAnimal: `${BASE_URL}/api/Animal`, //get
+  getHistorico: `${BASE_URL}/api/Consulta/cliente`, //get
   ContentType: 'application/json',
 };

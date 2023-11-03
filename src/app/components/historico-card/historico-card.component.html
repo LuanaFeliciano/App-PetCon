@@ -1,12 +1,22 @@
-<ion-card>
+<ion-card [ngStyle]="{'border-right': sexo === 'Macho' ? '6px solid var(--ion-color-primary)' : '6px solid #FF69B4'}">
   <ion-card-header>
-    <ion-card-title> {{nome}} </ion-card-title>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="8">
+        <ion-card-title [ngStyle]="{'color': sexo === 'Macho' ? 'var(--ion-color-primary)' : '#FF69B4'}">
+          {{nome}}
+        </ion-card-title>
+      </ion-col>
+      <ion-col size="4" class="ion-text-end">
+        <ion-badge color={{color}}>{{status}}</ion-badge>
+      </ion-col>      
+    </ion-row>
   </ion-card-header>
+  
   <ion-card-content>
     <p><span>Animal:</span> {{animal}}</p>
-    <p><span></span>Idade: {{idade}}</p>
+    <p><span>Idade:</span> {{idade}}</p>
     <p><span>Data da Consulta:</span> {{data}}</p>
     <p><span>Veterinário:</span> {{veterinario}}</p>
-    <p><span>Serviço:</span> {{servico}}</p>
+    <p><span>Descrição:</span> {{descricao}}</p>
   </ion-card-content>
 </ion-card>

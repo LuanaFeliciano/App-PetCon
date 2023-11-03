@@ -18,13 +18,22 @@
             <ion-list>
               <ion-item>
                 <ion-select placeholder="Filtrar por animal" (ionChange)="filterConsultas($event)">
-                  <ion-select-option *ngFor="let animal of animals" [value]="animal.id">{{animal.nome}}</ion-select-option>
+                  <ion-select-option value="todos">Todos</ion-select-option>
+                  <ion-select-option *ngFor="let animal of animals" [value]="animal.animalId">{{animal.nome}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-select placeholder="Filtrar por Status" (ionChange)="filterConsultasPorStatus($event)">
+                  <ion-select-option value="todos">Todos</ion-select-option>
+                  <ion-select-option value="Agendada">Agendada</ion-select-option>
+                  <ion-select-option value="Finalizada">Finalizada</ion-select-option>
+                  <ion-select-option value="Cancelada">Cancelada</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-list>
           </div>
           <ng-container *ngFor="let consulta of filteredConsultas">
-            <app-historico-card [nome]="consulta.nome" [idade]="consulta.idade" [data]="consulta.data" [veterinario]="consulta.veterinario" [animal]="consulta.tipo" [servico]="consulta.servico"></app-historico-card>
+            <app-historico-card [status]="consulta.Status" [sexo]="consulta.Animal.Sexo" [nome]="consulta.Animal.Nome" [idade]="consulta.Animal.Idade" [data]="consulta.DataConsulta" [veterinario]="consulta.Veterinarios.Nome" [animal]="consulta.Animal.Tipo" [descricao]="consulta.Descricao"></app-historico-card>
           </ng-container>
         </ion-col>
       </ion-row>
