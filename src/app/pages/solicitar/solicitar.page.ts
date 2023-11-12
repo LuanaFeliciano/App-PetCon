@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { UserServiceService } from 'src/app/Services/UserService/user-service.service';
+import { EditarAnimalService } from 'src/app/Services/editarAnimal/editar-animal.service';
+import { SolicitacaoConsultaService } from 'src/app/Services/solicitacao/solicitacao-consulta.service';
 
 @Component({
   selector: 'app-solicitar',
@@ -12,14 +15,18 @@ export class SolicitarPage implements OnInit {
   imageUrl: any;
   solicitarForm: FormGroup;
   nome : string = '';
-  animals = [
-    {id: 1, nome: 'Tobias', idade: 1, tipo: 'Hamster', link: '../../assets/hamsterPhoto.png', raca: 'Sírio', sexo: 'Macho' },
-    {id: 2, nome: 'Frederic', idade: 10, tipo: 'Jabuti', link: '../../assets/tartarugaPhoto.png', raca: 'Nenhuma', sexo: 'Macho'},
-  ];
+
+  idUser: number = this.UserGet.getIdUser();
+  animalId: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private toastController: ToastController,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private loadingCtrl: LoadingController,
+    private solicitarConsulta: SolicitacaoConsultaService,
+    private UserGet: UserServiceService,
+    private editarService: EditarAnimalService,) {
     this.solicitarForm = this.formBuilder.group({
       periodo: [null, Validators.required],
       descricao: [null, Validators.required],
@@ -49,27 +56,61 @@ export class SolicitarPage implements OnInit {
     toast.present();
   }
 
-  async solicitar() {
+  async getAnimal(idAnimal: any) {
+    try {
+      
+      const response: any = await this.editarService.getAnimal(idAnimal);
+      console.log(response)
+      if (response) {
+        this.nome = response.nome
+      }
+    } catch (error: any) {
+      this.presentMensagemToast("erro ao buscar animal", 'danger');
+    }
+  }
+
+  async solicitar(){
     if (!this.solicitarForm.valid) {
       this.presentMensagemToast('Verifique os campos corretamente', 'danger');
       return;
     }
-    this.presentMensagemToast('Solicitação enviada com sucesso', 'success');
-  }
 
+    const loading = await this.loadingCtrl.create({
+      message: 'Solicitando ....',
+    });
+
+    try {
+      await loading.present();
+      
+      const data = {
+        animalId: this.animalId,
+        clienteId: this.idUser,
+        periodo: this.solicitarForm.get('periodo')?.value,
+        descricao: this.solicitarForm.get('descricao')?.value,
+        urgencia: this.solicitarForm.get('urgencia')?.value,
+      };
+
+      const response: any = await this.solicitarConsulta.solicitarConsulta(data);
+      console.log(response)
+      if (response) {
+        this.presentMensagemToast(response.data, 'success');
+      }
+    } catch (error: any) {
+      this.presentMensagemToast("erro ao solicitar agendamento", 'danger');
+    } finally {
+      loading.dismiss();
+    }
+
+    
+  }
   ngOnInit() {
+    this.idUser = this.UserGet.getIdUser();
     this.route.paramMap.subscribe(params => {
       const animalId = params.get('id');
       if (animalId) {
-        // Encontrar o animal com base no animalId
-        const animal = this.animals.find(a => a.id === +animalId);
-
-        if (animal) {
-          this.nome = animal.nome;
-          this.imageUrl = animal.link;
-        }
+        this.getAnimal(animalId);
+        this.animalId = animalId
       }
     });
   }
-
 }
