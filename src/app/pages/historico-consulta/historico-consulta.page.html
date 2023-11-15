@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid class="form-content" style="margin: 5px">
       <ion-row>
         <ion-col size="12">
@@ -35,6 +38,9 @@
           <ng-container *ngFor="let consulta of filteredConsultas">
             <app-historico-card [status]="consulta.Status" [sexo]="consulta.Animal.Sexo" [nome]="consulta.Animal.Nome" [idade]="consulta.Animal.Idade" [data]="consulta.DataConsulta" [veterinario]="consulta.Veterinarios.Nome" [animal]="consulta.Animal.Tipo" [descricao]="consulta.Descricao"></app-historico-card>
           </ng-container>
+          <ion-card color="danger" *ngIf="erroConsulta"  >
+            <ion-card-content> Sem Consultas Cadastradas! </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
   </ion-grid>

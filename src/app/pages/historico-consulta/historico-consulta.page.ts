@@ -15,6 +15,7 @@ export class HistoricoConsultaPage implements OnInit {
   selectedStatus: any;;
   filteredConsultas: any = [];
   idUser: number = this.UserGet.getIdUser();
+  erroConsulta: boolean = false;
   constructor(
     private historicoService: HistoricoService, 
     private loadingCtrl: LoadingController, 
@@ -47,12 +48,19 @@ export class HistoricoConsultaPage implements OnInit {
     this.listarConsulta();
   }
   
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.listarConsulta();
+      event.target.complete();
+    }, 2000);
+  }
+
   
 
   async presentMensagemToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 3000,
+      duration: 1000,
       position: 'top',
       color: 'danger',
     });
@@ -60,13 +68,8 @@ export class HistoricoConsultaPage implements OnInit {
   }
 
   async listagemAnimais() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Carregando ....',
-    });
 
     try {
-      await loading.present();
-
       const idUser = this.idUser;
 
       const response: any = await this.meusAnimaisService.meusAnimais(idUser);
@@ -76,9 +79,7 @@ export class HistoricoConsultaPage implements OnInit {
         this.animals = response;
       }
     } catch (error: any) {
-      this.presentMensagemToast(error);
-    } finally {
-      loading.dismiss();
+      this.erroConsulta = true;
     }
   }
 
@@ -96,6 +97,11 @@ export class HistoricoConsultaPage implements OnInit {
   
       if (response) {
         console.log(response);
+
+        if (response.data.length === 0) {
+          this.erroConsulta = true;
+          return
+        }
   
         if (this.selectedAnimal) {
           const consultasDoAnimal = response.filter(
@@ -108,12 +114,15 @@ export class HistoricoConsultaPage implements OnInit {
             );
   
             if (consultasFiltradas.length > 0) {
+              this.erroConsulta = false;
               this.filteredConsultas = consultasFiltradas;
             } else {
               this.presentMensagemToast(`Não foram encontradas consultas com o status ${this.selectedStatus} para esse animal.`);
+              this.erroConsulta = true;
               this.filteredConsultas = [];
             }
           } else {
+            this.erroConsulta = false;
             this.filteredConsultas = consultasDoAnimal;
           }
         } else if (this.selectedStatus) {
@@ -122,17 +131,21 @@ export class HistoricoConsultaPage implements OnInit {
           );
   
           if (consultasFiltradas.length > 0) {
+            this.erroConsulta = false;
             this.filteredConsultas = consultasFiltradas;
           } else {
             this.presentMensagemToast(`Não foram encontradas consultas com o status ${this.selectedStatus}.`);
+            this.erroConsulta = true;
             this.filteredConsultas = [];
           }
         } else {
+          this.erroConsulta = false;
           this.filteredConsultas = response;
         }
       }
     } catch (error: any) {
-      this.presentMensagemToast(error);
+      this.presentMensagemToast("Sem Consultas Cadastradas");
+      this.erroConsulta = true;
     } finally {
       loading.dismiss();
     }

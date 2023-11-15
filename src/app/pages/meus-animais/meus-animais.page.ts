@@ -49,7 +49,9 @@ export class MeusAnimaisPage implements OnInit {
       
       if (response) {
         console.log(response);
+        this.erroAnimal = false;
         this.animals = response;
+        
       }
     } catch (error: any) {
       this.presentMensagemToast(error);
