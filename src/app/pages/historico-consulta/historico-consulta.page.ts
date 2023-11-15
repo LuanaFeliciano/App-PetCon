@@ -98,10 +98,7 @@ export class HistoricoConsultaPage implements OnInit {
       if (response) {
         console.log(response);
 
-        if (response.data.length === 0) {
-          this.erroConsulta = true;
-          return
-        }
+        
   
         if (this.selectedAnimal) {
           const consultasDoAnimal = response.filter(
@@ -139,8 +136,13 @@ export class HistoricoConsultaPage implements OnInit {
             this.filteredConsultas = [];
           }
         } else {
-          this.erroConsulta = false;
           this.filteredConsultas = response;
+
+          if (response.length == 0) {
+            this.erroConsulta = true;
+          }else {
+            this.erroConsulta = false;
+          }
         }
       }
     } catch (error: any) {
@@ -151,10 +153,6 @@ export class HistoricoConsultaPage implements OnInit {
     }
   }
   
-  
-  
-
-
   ngOnInit() {
     this.idUser = this.UserGet.getIdUser();
     this.listarConsulta();
