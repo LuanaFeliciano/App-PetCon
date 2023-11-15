@@ -13,6 +13,7 @@ export class MeusAnimaisPage implements OnInit {
 
   idUser: number = this.UserGet.getIdUser();
   animals: any = [];
+  erroAnimal: boolean = false;
   constructor(private meusAnimaisService: ListagemAnimalService, private loadingCtrl: LoadingController,private router: Router,private toastController: ToastController, private UserGet: UserServiceService) { }
 
 
@@ -24,6 +25,13 @@ export class MeusAnimaisPage implements OnInit {
       color: 'danger',
     });
     toast.present();
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.listagemAnimais();
+      event.target.complete();
+    }, 2000);
   }
 
 
@@ -45,6 +53,7 @@ export class MeusAnimaisPage implements OnInit {
       }
     } catch (error: any) {
       this.presentMensagemToast(error);
+      this.erroAnimal = true;
     } finally {
       loading.dismiss();
     }

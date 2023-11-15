@@ -93,7 +93,7 @@ export class SolicitarPage implements OnInit {
       const response: any = await this.solicitarConsulta.solicitarConsulta(data);
       console.log(response)
       if (response) {
-        this.presentMensagemToast(response.data, 'success');
+        this.presentMensagemToast("solicitaçao enviada com sucesso", 'success');
       }
     } catch (error: any) {
       this.presentMensagemToast("erro ao solicitar agendamento", 'danger');

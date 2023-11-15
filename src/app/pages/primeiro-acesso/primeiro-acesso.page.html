@@ -1,6 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+      <ion-title>Atualizar Senha</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true" class="">
   <ion-grid class="form-content" style="margin: 5px">
-    <form>
+    <form [formGroup]="Form" novalidate>
       <ion-row>
         <ion-col size="12">
           <div>
@@ -12,13 +20,16 @@
             <div class="ion-margin ion-padding-horizontal informacoes">
               <label for="">Informações</label>
               <br>
-              <ion-note>Para o seu primeiro acesso ao aplicativo foi enviado uma senha padrão ao seu email. Atualize a senha de acordo com seu desejo. </ion-note>
+              <ion-note>Para o seu primeiro acesso ao aplicativo foi lhe informado uma senha padrão de acesso. Atualize a senha de acordo com seu desejo. </ion-note>
             </div>
             
-            <label class="label">Email</label>
+            <label class="label">CPF</label>
             <ion-item lines="none">
-              <ion-input clearInput type="text" placeholder="Email"  maxlength="256"></ion-input>
+              <ion-input formControlName="cpf" clearInput type="tel" placeholder="CPF"  maxlength="256"></ion-input>
             </ion-item>
+            <div class="error-container">
+              <app-validator-form [control]="$any(Form.get('cpf'))" [messages]="validationMessages.cpf"></app-validator-form>
+            </div>
           </div>
         </ion-col>
       </ion-row>
@@ -28,11 +39,14 @@
           <div style="margin-top: 15px">
             <label class="label">Senha</label>
             <ion-item lines="none">
-              <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Senha"
+              <ion-input formControlName="senha" [type]="showPassword ? 'text' : 'password'" placeholder="Senha"
                 clearOnEdit="false" maxlength="15"></ion-input>
               <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end"
                 (click)="mudarVisualizacao()"></ion-icon>
             </ion-item>
+            <div class="error-container">
+              <app-validator-form [control]="$any(Form.get('senha'))" [messages]="validationMessages.senha"></app-validator-form>
+            </div>
           </div>
         </ion-col>
       </ion-row>
@@ -40,7 +54,7 @@
       <ion-row>
         <ion-col size="12">
           <div class="login-buttons ion-text-center ion-margin-top">
-            <ion-button expand="block" size="small">Confirmar</ion-button>
+            <ion-button expand="block" size="small" (click)="AlterarSenha()">Confirmar</ion-button>
           </div>
         </ion-col>
       </ion-row>
